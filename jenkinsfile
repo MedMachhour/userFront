@@ -1,0 +1,16 @@
+pipeline{
+    agent any
+    tools{
+        maven 'M3_HOME'
+        jdk 'jdk1.8.0_171'
+    }
+    stages {
+        stage('perf') {
+            steps {
+                bat 'mvn gatling:test site'
+
+                gatlingArchive()
+            }
+        }
+    }
+}
